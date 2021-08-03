@@ -1,6 +1,7 @@
 import {Dispatch} from 'redux';
-import {setAppErrorAC, SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from "./app-reducer";
-import {starShipsAPI, ResponseDataType, ResponseStarShipsType, film5API} from "../api/api";
+import {setAppErrorAC, SetAppErrorActionType} from "./app-reducer";
+import {film5API, starShipsAPI} from "../api/api";
+import {StarshipType} from "./Types";
 
 
 const initialState = {
@@ -27,18 +28,46 @@ export const film5Reducer = (state: InitStateType = initialState, action: Action
             }
         }
         case 'GET_ONE_STARSHIP': {
+            const data = {
+                MGLT: action.data.MGLT,
+                cargo_capacity: action.data.cargo_capacity,
+                consumables: action.data.consumables,
+                cost_in_credits: action.data.cost_in_credits,
+                created: action.data.created,
+                crew: action.data.crew,
+                edited: action.data.edited,
+                films: action.data.films,
+                hyperdrive_rating: action.data.hyperdrive_rating,
+                length: action.data.length,
+                manufacturer: action.data.manufacturer,
+                max_atmosphering_speed: action.data.max_atmosphering_speed,
+                model: action.data.model,
+                name: action.data.name,
+                passengers: action.data.passengers,
+                pilots: action.data.pilots,
+                starship_class: action.data.starship_class,
+                url: action.data.url,
+                shipHasBeenChecked: false
+            }
+            //точно можно порефакторить, просто мозги уже кипят.
             return {
                 ...state,
-                starshipsInfo: [...state.starshipsInfo, action.data]
+                starshipsInfo: [
+                    ...state.starshipsInfo,
+                    data
+                ]
             }
         }
         case 'GET_CHECKED_STARSHIP': {
+            const data = state.starshipsInfo.map((el: StarshipType) => {
+                return el.url === action.data ? { ...el, shipHasBeenChecked: !el.shipHasBeenChecked } : el
+            })
             return {
                 ...state,
-                starshipsChecked: [...state.starshipsInfo, action.data]
+                starshipsInfo: data
             }
         }
-            //return state.map(ship => ship.name === action.name ? {...ship, filter: action.filter} : ship)
+        //return state.map(ship => ship.name === action.name ? {...ship, filter: action.filter} : ship)
         default:
             return state
     }
@@ -47,7 +76,7 @@ export const film5Reducer = (state: InitStateType = initialState, action: Action
 // actions
 export const getFilm5AC = (data: any) => ({type: 'GET_FILM5', data} as const);
 export const getStarShipsLinksAC = (data: any) => ({type: 'GET_STARSHIPS_LINKS', data} as const);
-export const getOneStarShipAC = (data: string) => ({type: 'GET_ONE_STARSHIP', data} as const);
+export const getOneStarShipAC = (data: any) => ({type: 'GET_ONE_STARSHIP', data} as const);
 export const getCheckedStarShipAC = (data: string) => ({type: 'GET_CHECKED_STARSHIP', data} as const);
 
 
@@ -88,9 +117,9 @@ export const getOneStarShipTC = (url: string) => async (dispatch: ThunkDispatch)
         // dispatch(setAppStatusAC('succeeded'))
     }
     catch(error) {
-            dispatch(setAppErrorAC(error.message ? error.message : 'Some error occurred'))
-            // dispatch(setAppStatusAC('failed'))
-        }
+        dispatch(setAppErrorAC(error.message ? error.message : 'Some error occurred'))
+        // dispatch(setAppStatusAC('failed'))
+    }
 }
 
 export const getCheckedStarShipTC = (url: string) => async (dispatch: ThunkDispatch) => {
