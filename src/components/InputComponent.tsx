@@ -1,12 +1,18 @@
 import React from 'react';
+import {Checkbox} from "@material-ui/core";
 
-export const InputComponent = ({value, onChange}: any) => {
+type PropsType = {
+    value: string | boolean
+    onChange: () => void
+}
+
+export const InputComponent: React.FC<PropsType> = React.memo(({value, onChange}) => {
     return (
-        <input
-            type="checkbox"
+        <Checkbox
+            color="primary"
             checked={!!value}
             onChange={onChange}
             readOnly={false}
         />
     )
-}
+})

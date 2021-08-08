@@ -1,5 +1,5 @@
 {
-  "homepage": "https://andreiakimochkin.github.io/DummyRequest",
+  "homepage": "https://andreiakimochkin.github.io/StarShips",
   "name": "test",
   "version": "0.1.0",
   "private": true,
@@ -17,11 +17,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "yarn": "^1.22.11"
   },
   "scripts": {
     "start": "react-scripts start",

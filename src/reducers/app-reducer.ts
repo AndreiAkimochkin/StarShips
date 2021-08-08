@@ -1,8 +1,7 @@
 
 const initialState: InitialStateType = {
     status: 'idle',
-    error: null,
-
+    error: null
 }
 
 export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
@@ -11,19 +10,16 @@ export const appReducer = (state: InitialStateType = initialState, action: Actio
             return {...state, status: action.status}
         case 'APP/SET-ERROR':
             return {...state, error: action.error}
-
         default:
             return {...state}
     }
 }
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type InitialStateType = {
-    // is there any interaction with the server now
-    status: RequestStatusType
-    // if a global error occurs, we will write the error text here
-    error: string | null
 
+export type InitialStateType = {
+    status: RequestStatusType
+    error: string | null
 }
 
 export const setAppErrorAC = (error: string | null) => ({type: 'APP/SET-ERROR', error} as const)

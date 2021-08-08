@@ -1,23 +1,19 @@
 import React from 'react';
-import {ShipsList} from "./components/starShipsList";
+import logo from "./styles/images/logo.svg"
+import app from "./App.module.css"
+import {ShipsList} from "./components/StarShipsList";
 
-function App(props: any) {
 
-    const onClick=()=> {
-
-    }
-
-        return (
-
+function App() {
+     return (
+        <div className={app.wrapper}>
             <div>
-                All Ships from film №5
-
-                    <ShipsList/>
-
+                <img className={app.photo} src={logo} alt=""/>
+                <p className={app.p}>May the force be with you</p>
             </div>
+            <ShipsList/>
+        </div>
+    );
+}
 
-        );
-    }
-
-
-    export default App;
+export default App;

@@ -1,0 +1,17 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p {
+    text-transform: uppercase;
+    margin: 10px 0 23px;
+    font-size: 22px;
+    line-height: 32px;
+    font-family: 'Showcard Gothic', sans-serif;
+}
+.photo:hover {
+    transform: scale(1.15, 1.15);
+    transition: 0.5s
+}

@@ -1,10 +1,10 @@
-export type StarshipType = {
+export type StarShipType = {
     MGLT: string
     cargo_capacity: string
     consumables: string
     cost_in_credits: string
     created: string
-    crew: string
+    crew: string | number
     edited: string
     films: Array<string>
     hyperdrive_rating: string
@@ -17,5 +17,5 @@ export type StarshipType = {
     pilots: Array<string>
     starship_class: string
     url: string
-    shipHasBeenChecked: false
+    shipHasBeenChecked: boolean
 }
