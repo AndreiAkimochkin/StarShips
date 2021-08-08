@@ -10,8 +10,9 @@ type PropsType = {
     mode: boolean
     isSortedValue: boolean
     index?: number
+    optionValue?: string
 }
-export const Ship: React.FC<PropsType> = React.memo(({info, mode, isSortedValue, index}) => {
+export const Ship: React.FC<PropsType> = React.memo(({info, mode, isSortedValue, index, optionValue}) => {
     const dispatch = useDispatch()
     const setShipChecked = (urlAsID: string) => {
         dispatch(getCheckedStarShipAC(urlAsID))
@@ -22,17 +23,18 @@ export const Ship: React.FC<PropsType> = React.memo(({info, mode, isSortedValue,
     }
 
      const nameStyle = isSortedValue && index === 0 ? ship.firstName : ship.name;
-
-    return (
+        return (
         <div className={ship.wrapper}>
             <div><InputComponent value={info.shipHasBeenChecked} onChange={() => setShipChecked(info.url)}/>
                 name: <b>{info?.name}</b>
             </div>
-            {mode ? <div className={nameStyle}>
-                    <div>crew: <b>{info?.crew}</b></div>
-                    <div>length: <b>{info?.length}</b></div>
-                    <div>passengers: <b>{info?.passengers}</b></div>
-                    <div>max_atmosphering_speed: <b>{info?.max_atmosphering_speed}</b></div>
+            {mode ? <div >
+                    <div>crew: <b className={optionValue === "Crew" ? nameStyle : ''}>{info?.crew}</b></div>
+                    <div>length: <b className={optionValue === "Length" ? nameStyle : ''}>{info?.length}</b></div>
+                    <div>passengers: <b className={optionValue === "Passengers" ? nameStyle : ''}
+                    >{info?.passengers}</b></div>
+                    <div>max_atmosphering_speed: <b className={optionValue === "Max_speed" ? nameStyle : ''}
+                    >{info?.max_atmosphering_speed}</b></div>
                 </div>
                 : ''}
         </div>

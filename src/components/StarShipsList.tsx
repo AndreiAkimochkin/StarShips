@@ -12,11 +12,25 @@ export const ShipsList = React.memo(() => {
     const dispatch = useDispatch()
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     const links = useSelector<AppRootStateType, string[]>(state => state.film5.starShips)
-    const shipsInfo = useSelector<AppRootStateType, StarShipType[]>(state => state.film5.starShipsInfo)
+    const shipsInfoData = useSelector<AppRootStateType, StarShipType[]>(state => state.film5.starShipsInfo)
     const [runOnce, setRunOnce] = useState(true)
     const [comparisonMode, setComparisonMode] = useState(false)
-    const [optionValue, setOptionValue] = useState("")
+    const [optionValue, setOptionValue] = useState("Crew")
 
+    const shipsInfo = shipsInfoData.filter(el => {//Unpicked if value is unknown
+        switch (optionValue) {
+            case("Crew"):
+                return el.crew !== 'unknown' && el.crew !== "n/a"
+            case("Length"):
+                return el.length !== 'unknown' && el.length !== "n/a"
+            case("Passengers"):
+                return el.passengers !== 'unknown' && el.passengers !== "n/a"
+            case("Max_speed"):
+                return el.max_atmosphering_speed !== 'unknown' && el.max_atmosphering_speed !== "n/a"
+            default:
+                return true
+            }})
+        
     useEffect(() => {
         dispatch(getStarShipsLinksTC())
     }, [dispatch])
@@ -61,15 +75,15 @@ export const ShipsList = React.memo(() => {
         return
     }
     // Get picked StarShips for comparison
-    const selectedVehicle = sorted(optionValue)?.map((el: StarShipType, index) => {
-        if (el.shipHasBeenChecked) {
+    const selectedVehicle = sorted(optionValue)?.filter(el=>el.shipHasBeenChecked).map((el: StarShipType, index) => {
+       // if (el.shipHasBeenChecked) {
             return (
                 <div key={el.created}>
-                    <Ship isSortedValue index={index} info={el} mode={comparisonMode}/>
+                    <Ship isSortedValue index={index} optionValue={optionValue} info={el} mode={comparisonMode}/>
                 </div>
             )
-        }
-        return null
+        // }
+        // return null
     })
 
     //Loading circle
