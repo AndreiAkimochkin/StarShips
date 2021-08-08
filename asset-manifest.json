@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/StarShips/static/css/main.377b7b77.chunk.css",
-    "main.js": "/StarShips/static/js/main.3bc6c1ca.chunk.js",
-    "main.js.map": "/StarShips/static/js/main.3bc6c1ca.chunk.js.map",
+    "main.js": "/StarShips/static/js/main.1b40a48d.chunk.js",
+    "main.js.map": "/StarShips/static/js/main.1b40a48d.chunk.js.map",
     "runtime-main.js": "/StarShips/static/js/runtime-main.9628d093.js",
     "runtime-main.js.map": "/StarShips/static/js/runtime-main.9628d093.js.map",
     "static/js/2.ef671b9e.chunk.js": "/StarShips/static/js/2.ef671b9e.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.9628d093.js",
     "static/js/2.ef671b9e.chunk.js",
     "static/css/main.377b7b77.chunk.css",
-    "static/js/main.3bc6c1ca.chunk.js"
+    "static/js/main.1b40a48d.chunk.js"
   ]
 }
