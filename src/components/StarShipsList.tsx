@@ -76,14 +76,11 @@ export const ShipsList = React.memo(() => {
     }
     // Get picked StarShips for comparison
     const selectedVehicle = sorted(optionValue)?.filter(el=>el.shipHasBeenChecked).map((el: StarShipType, index) => {
-       // if (el.shipHasBeenChecked) {
-            return (
+               return (
                 <div key={el.created}>
                     <Ship isSortedValue index={index} optionValue={optionValue} info={el} mode={comparisonMode}/>
                 </div>
             )
-        // }
-        // return null
     })
 
     //Loading circle
